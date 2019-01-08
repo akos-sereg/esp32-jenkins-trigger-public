@@ -28,7 +28,7 @@ The suitcase consists of switches and LEDs only, its pretty simple:
  
 ### Feedback LEDs:
  
- All LEDs should be connected to 3v3 via 120 Ohm resistors
+ All LEDs should be connected to 3v3 via 110 Ohm resistors
  
 ```
        |
