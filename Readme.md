@@ -1,4 +1,8 @@
-# jenkins-control
+# esp32-jenkins-trigger-public
+
+ESP32 sources for the following project: 
+
+https://hackaday.io/project/162839-jenkins-build-deploy-launch-case
 
 ## Circuit
 
