@@ -6,7 +6,7 @@ https://hackaday.io/project/162839-jenkins-build-deploy-launch-case
 
 ## Circuit
 
-The suitcased consists of switches and LEDs only, its pretty simple:
+The suitcase consists of switches and LEDs only, its pretty simple:
 
 ### Switch / Push Buttons:
  - GPIO Input should be grounded via 1.5k Ohm
