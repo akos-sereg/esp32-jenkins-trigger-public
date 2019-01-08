@@ -1,0 +1,65 @@
+menu "Jenkins Trigger Configuration"
+
+config WIFI_SSID
+    string "WiFi SSID"
+	default "Your-SSID"
+	help
+		SSID (network name) for the example to connect to.
+
+config WIFI_PASSWORD
+    string "WiFi Password"
+	default "Your-wifi-password"
+	help
+		WiFi password (WPA or WPA2) for the example to use.
+
+		Can be left blank if the network has no security set.
+
+config WEB_SERVER
+    string "Web Server address without protocol"
+	default "yourjenkins.company.com"
+	help
+		Example: yourjenkins.company.com
+
+config WEB_SERVER_URL
+    string "Web Server address with protocol, applicable only if JENKINS_ON_HTTPS is defined and we are not using mbedtls"
+	default "https://yourjenkins.company.com"
+	help
+		Example: https://yourjenkins.company.com
+
+config WEB_PORT
+    string "Web port, applicable only if JENKINS_ON_HTTPS is not defined"
+	default "80"
+	help
+		Example: 80
+
+config WEB_PORT_HTTPS
+    string "HTTPS Web port, applicable only if using mbedtls (calling do_https_request_with_mbedtls anywhere)"
+	default "443"
+	help
+		Example: 443
+
+config JENKINS_AUTH
+    string "Jenkins basic authentication token"
+	default "output of base64(username:apikey)"
+	help
+		Base64 encoded "<username>:<api-key>"
+
+config JENKINS_JOB_1
+    string "Jenkins job to be triggered by switching on the first switch"
+	default "succeeding"
+	help
+		From url: https://<your-jenkins>/job/<job-name>/
+
+config JENKINS_JOB_2
+    string "Jenkins job to be triggered by switching on the second switch"
+	default "failing"
+	help
+		From url: https://<your-jenkins>/job/<job-name>/
+
+config JENKINS_JOB_3
+    string "Jenkins job to be triggered by switching on the third switch"
+	default "succeeding"
+	help
+		From url: https://<your-jenkins>/job/<job-name>/
+
+endmenu
