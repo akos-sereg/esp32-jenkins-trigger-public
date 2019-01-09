@@ -24,20 +24,20 @@ void do_http_request(const char *request)
     int err = 0;
 
     if (address_retrieved != 1) {
-	err = getaddrinfo(WEB_SERVER, WEB_PORT, &hints, &res);
-	ESP_LOGI(TAG, "Got address info");
+        err = getaddrinfo(WEB_SERVER, WEB_PORT, &hints, &res);
+        ESP_LOGI(TAG, "Got address info");
 
-	if(err != 0 || res == NULL) {
-    	    ESP_LOGE(TAG, "DNS lookup failed err=%d res=%p", err, res);
-	    IS_BUILD_FAILED = 1;
-	    IS_BUILD_IN_PROGRESS = 0;
-	    refresh_led_screen();
-    	    return;
-	}
+        if(err != 0 || res == NULL) {
+            ESP_LOGE(TAG, "DNS lookup failed err=%d res=%p", err, res);
+            IS_BUILD_FAILED = 1;
+            IS_BUILD_IN_PROGRESS = 0;
+            refresh_led_screen();
+            return;
+        }
 
-	addr = &((struct sockaddr_in *)res->ai_addr)->sin_addr;
-	ESP_LOGI(TAG, "DNS lookup succeeded. IP=%s", inet_ntoa(*addr));
-	address_retrieved = 1;
+        addr = &((struct sockaddr_in *)res->ai_addr)->sin_addr;
+        ESP_LOGI(TAG, "DNS lookup succeeded. IP=%s", inet_ntoa(*addr));
+        address_retrieved = 1;
     }
 
     err = getaddrinfo(WEB_SERVER, WEB_PORT, &hints, &res);
@@ -45,9 +45,9 @@ void do_http_request(const char *request)
 
     if(err != 0 || res == NULL) {
         ESP_LOGE(TAG, "DNS lookup failed err=%d res=%p", err, res);
-	IS_BUILD_FAILED = 1;
-	IS_BUILD_IN_PROGRESS = 0;
-	refresh_led_screen();
+        IS_BUILD_FAILED = 1;
+        IS_BUILD_IN_PROGRESS = 0;
+        refresh_led_screen();
         return;
     }
 
@@ -58,10 +58,10 @@ void do_http_request(const char *request)
     if(s < 0) {
         ESP_LOGE(TAG, "... Failed to allocate socket.");
         freeaddrinfo(res);
-	IS_BUILD_FAILED = 1;
-	IS_BUILD_IN_PROGRESS = 0;
-	refresh_led_screen();
-	return;
+        IS_BUILD_FAILED = 1;
+        IS_BUILD_IN_PROGRESS = 0;
+        refresh_led_screen();
+        return;
     }
 
     ESP_LOGI(TAG, "... allocated socket");
@@ -70,10 +70,10 @@ void do_http_request(const char *request)
         ESP_LOGE(TAG, "... socket connect failed errno=%d", errno);
         close(s);
         freeaddrinfo(res);
-	IS_BUILD_IN_PROGRESS = 0;
-	IS_BUILD_FAILED = 1;
-	refresh_led_screen();
-	return;
+        IS_BUILD_IN_PROGRESS = 0;
+        IS_BUILD_FAILED = 1;
+        refresh_led_screen();
+        return;
     }
 
     ESP_LOGI(TAG, "... connected");
@@ -81,29 +81,26 @@ void do_http_request(const char *request)
 
     ESP_LOGI(TAG, "Sending request: %s", request);
 
-    if (write(s,
-	request,
-	strlen(request)) < 0) {
+    if (write(s, request, strlen(request)) < 0) {
         ESP_LOGE(TAG, "... socket send failed");
         close(s);
-	IS_BUILD_FAILED = 1;
-	IS_BUILD_IN_PROGRESS = 0;
-	refresh_led_screen();
-	return;
+        IS_BUILD_FAILED = 1;
+        IS_BUILD_IN_PROGRESS = 0;
+        refresh_led_screen();
+        return;
     }
     ESP_LOGI(TAG, "... socket send success");
 
     struct timeval receiving_timeout;
     receiving_timeout.tv_sec = REQUEST_TIMEOUT_IN_SECONDS;
     receiving_timeout.tv_usec = 0;
-    if (setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &receiving_timeout,
-            sizeof(receiving_timeout)) < 0) {
+    if (setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &receiving_timeout, sizeof(receiving_timeout)) < 0) {
         ESP_LOGE(TAG, "... failed to set socket receiving timeout");
         close(s);
-	IS_BUILD_FAILED = 1;
-	IS_BUILD_IN_PROGRESS = 0;
-	refresh_led_screen();
-	return;
+        IS_BUILD_FAILED = 1;
+        IS_BUILD_IN_PROGRESS = 0;
+        refresh_led_screen();
+        return;
     }
     ESP_LOGI(TAG, "... set socket receiving timeout success");
 
@@ -111,9 +108,9 @@ void do_http_request(const char *request)
         bzero(recv_buf, sizeof(recv_buf));
         r = read(s, recv_buf, sizeof(recv_buf)-1);
         for(int i = 0; i < r; i++) {
-	    if (charCount < sizeof(response_payload)) {
-		response_payload[charCount++] = recv_buf[i];
-	    }
+            if (charCount < sizeof(response_payload)) {
+                response_payload[charCount++] = recv_buf[i];
+            }
         }
     } while(r > 0);
 
