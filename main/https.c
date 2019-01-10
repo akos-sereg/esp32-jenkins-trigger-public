@@ -75,7 +75,7 @@ void do_https_request(const char *request) {
 
         len = ret;
         ESP_LOGD(TAG, "%d bytes read", len);
-        /* Print response directly to stdout as it is read */
+
         for(int i = 0; i < len; i++) {
             putchar(buf[i]);
 	        response_payload[charCount] = buf[i];

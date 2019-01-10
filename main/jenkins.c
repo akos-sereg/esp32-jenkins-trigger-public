@@ -5,13 +5,13 @@
 #include "include/https.h"
 #include "include/utils.h"
 
-int IS_BUILD_IN_PROGRESS = 0;
-int IS_BUILD_FAILED = 0;
-int IS_BUILD_SUCCEEDED = 0;
-int JOB_NUMBER = 0;
-int QUEUE_NUMBER = 0;
-int JENKINS_JOB_INDEX = 0;
-char request[512];
+int IS_BUILD_IN_PROGRESS = 0;   /* Reflects that build is in progress on Jenkins */
+int IS_BUILD_FAILED = 0;        /* Reflects that last build has failed */
+int IS_BUILD_SUCCEEDED = 0;     /* Reflects that last build has succeeded */
+int JOB_NUMBER = 0;             /* Jenkins job number */
+int QUEUE_NUMBER = 0;           /* Jenkins queue number */
+int JENKINS_JOB_INDEX = 0;      /* 1-3 index, based on switch selection in the suitcase */
+char request[512];              /* Current http request content */
 
 static const char *REQUEST_1_PATH = "job/" JENKINS_JOB_1 "/build";
 static const char *REQUEST_JENKINS_JOB_1 = "POST /job/" JENKINS_JOB_1 "/build HTTP/1.0\r\n"
@@ -266,6 +266,7 @@ void jenkins_check_status() {
         IS_BUILD_SUCCEEDED = 1;
         IS_BUILD_IN_PROGRESS = 0;
         IS_BUILD_FAILED = 0;
+
         refresh_led_screen();
         ESP_LOGI(TAG, "Jenkins Job %d SUCCEEDED", JOB_NUMBER);
         return;
@@ -275,6 +276,7 @@ void jenkins_check_status() {
         IS_BUILD_SUCCEEDED = 0;
         IS_BUILD_IN_PROGRESS = 0;
         IS_BUILD_FAILED = 1;
+
         refresh_led_screen();
         ESP_LOGI(TAG, "Jenkins Job %d FAILED", JOB_NUMBER);
     }

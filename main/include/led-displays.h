@@ -12,10 +12,24 @@
 #define GPIO_DISPLAY_SWITCH_3		5
 #define GPIO_DISPLAY_PUSH_BUTTON	17
 
+/**
+  Configure led display GPIOs
+*/
 extern void setup_led_displays();
+
+/**
+  Refresh feedback led GPIO states
+*/
 extern void refresh_led_screen();
+
+/**
+  LED test flashing when board is initializing
+*/
 extern void flash_led_test();
 
+/**
+  Reflects that all conditions are green for the red push button to operate
+*/
 extern int CONTINUITY_CHECK;
 
 #endif

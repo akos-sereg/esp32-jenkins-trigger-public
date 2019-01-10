@@ -25,8 +25,19 @@ extern int SWITCH_2_STATE;
 extern int SWITCH_3_STATE;
 extern int RED_BUTTON_STATE;
 
+/**
+  Listen for button / switch update events
+*/
 extern void listen_switches(void* arg);
+
+/**
+  Configure button / switch GPIOs
+*/
 extern void setup_switches();
+
+/**
+  Reads the current state of button / switches - useful at boot time
+*/
 extern void read_switch_states();
 
 #endif

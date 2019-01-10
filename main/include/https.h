@@ -23,6 +23,9 @@
 extern const uint8_t server_root_cert_pem_start[] asm("_binary_server_root_cert_pem_start");
 extern const uint8_t server_root_cert_pem_end[]   asm("_binary_server_root_cert_pem_end");
 
+/**
+  Executes HTTPS request, puts response into response_payload global variable
+*/
 extern void do_https_request(const char *request);
 
 #endif

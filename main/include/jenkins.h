@@ -54,13 +54,25 @@
 */
 #define DELAY_BEFORE_RETRY	5
 
-extern int IS_BUILD_FAILED;
-extern int IS_BUILD_IN_PROGRESS;
-extern int IS_BUILD_SUCCEEDED;
-extern int JOB_NUMBER;
+extern int IS_BUILD_FAILED;      /* Reflects that last build has failed */
+extern int IS_BUILD_IN_PROGRESS; /* Reflects that build is in progress on Jenkins */
+extern int IS_BUILD_SUCCEEDED;   /* Reflects that last build has succeeded */
+extern int JOB_NUMBER;           /* Jenkins job number */
 
+/**
+   Initiates a pre-defined job on Jenkins
+*/
 void trigger_build(int jenkinsJob);
+
+/**
+   Gets the job number based on queue number: attempts to retrieve queue state periodically, and if the job
+   already started, sets the job number global variable.
+*/
 void get_job_number();
+
+/**
+   Checks the job's state - caled periodically. Sets the succeeded / failed global variables if job is completed.
+*/
 void jenkins_check_status();
 
 #endif

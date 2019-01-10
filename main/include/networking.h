@@ -30,6 +30,10 @@ extern int charCount;
 extern char response_payload[1024];
 
 extern int IS_WIFI_CONNECTED;
+
+/**
+  Connect to WIFI network
+*/
 extern void initialize_wifi();
 
 #endif
