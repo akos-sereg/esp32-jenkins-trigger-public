@@ -46,24 +46,49 @@ IntelliJ
 
 ## Input Switches
 
-- GPIO 34 (input only) - connected to Protected switch #2
-- GPIO 35 (input only) - connected to Protected switch #1
-- GPIO 36 (input only) - connected to Protected switch #3
-- GPIO 39 - connected to Push Button
-- GPIO 32 - connected to Key Switch
+```
++---------+--------------+---------------------+
+| GPIO    | Nature       | Action              |
++---------+--------------+---------------------+
+| 34      | input only   | Protected Switch #2 |                     
++---------+--------------+---------------------+
+| 35      | input only   | Protected Switch #1 |                     
++---------+--------------+---------------------+
+| 36      | input only   | Protected Switch #3 |                     
++---------+--------------+---------------------+
+| 39      |              | Red Push Button     |                     
++---------+--------------+---------------------+
+| 32      |              | Key Switch          |                     
++---------+--------------+---------------------+
+```
 
 ## LEDs
 
-- GPIO 33 - Network
-- GPIO 25 - Unlocked
-- GPIO 26 - Build Green
-- GPIO 23 - Build Red
-- GPIO 22 - Deploy Red
-- GPIO 1  - Deploy Green
-- GPIO 3  - Switch #1
-- GPIO 18 - Switch #2
-- GPIO 5  - Swicth #3
-- GPIO 17 - Push Button
+```
++---------+----------------------+
+| GPIO    | Displays             |
++---------+----------------------+
+| 33      | Network status       |                     
++---------+----------------------+
+| 25      | Authorization status |                     
++---------+----------------------+
+| 26      | Build                |                     
++---------+----------------------+
+| 23      | Build Failed         |                     
++---------+----------------------+
+| 22      | Deploy Failed        |                     
++---------+----------------------+
+| 1       | Deploy               |                     
++---------+----------------------+
+| 3       | Component Switch #1  |                     
++---------+----------------------+
+| 18      | Component Switch #2  |                     
++---------+----------------------+
+| 5       | Component Switch #3  |                     
++---------+----------------------+
+| 17      | Start Button         |                     
++---------+----------------------+
+```
 
 # Configuration
 
